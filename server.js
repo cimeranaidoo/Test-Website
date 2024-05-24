@@ -10,6 +10,14 @@ app.use(bodyParser.json());
 app.post("/subscribe", (req, res) => {
   const { email } = req.body;
 
+  fetch("/subscribe", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email: email }),
+  });
+
   if (!email) {
     return res.status(400).send("Email is required");
   }
